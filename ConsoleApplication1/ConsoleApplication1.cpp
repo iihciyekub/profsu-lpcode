@@ -68,7 +68,7 @@ int main()
 
 
 	//see.p774 table ,here is 50%, the optimal solutions results is Exp Return = 1.77%
-	IloNum chance = 0.7;
+
 #pragma endregion
 
 
@@ -120,6 +120,12 @@ int main()
 	//system("pause");
 
 	std::fclose(input_para);
+	env.out() << "Data loading is complete!" << endl;
+
+	float c;
+	cout << "please input chance level (0 or 0.5 or [0,1]):";
+	cin >> c;
+	IloNum chance = c;
 
 #pragma endregion
 
@@ -205,13 +211,13 @@ int main()
 
 
 	// constraints (21-22)
-	t_k = 813 - 100 * chance;
+	IloNum u_k = 813 - 100 * chance;
 	v_fun_exp_array.add(IloNumExpr(env));
 	for (int i = 0; i < 7; i++) {
-		v_fun_exp_array[7] += (put_x_Ask[i] + put_x_Bid[i]) * IloMax(0, (k[i] - t_k));
-		v_fun_exp_array[7] += (call_x_Ask[i] + call_x_Bid[i]) * IloMax(0, (t_k - k[i]));
+		v_fun_exp_array[7] += (put_x_Ask[i] + put_x_Bid[i]) * IloMax(0, (k[i] - u_k));
+		v_fun_exp_array[7] += (call_x_Ask[i] + call_x_Bid[i]) * IloMax(0, (u_k - k[i]));
 	}
-	v_fun_exp_array[7] += z * (1 + r) + y * (t_k + 1.59);
+	v_fun_exp_array[7] += z * (1 + r) + y * (u_k + 1.59);
 	IloAdd(model, v_fun_exp_array[7] >= 100);
 
 
