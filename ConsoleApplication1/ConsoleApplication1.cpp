@@ -5,8 +5,7 @@ Operations Research 48(5) : 768 - 775. http ://dx.doi.org/10.1287/opre.48.5.768.
 GitHub : https://github.com/iihciyekub/profsu-lpcode
 
 Author: Li,YougJian
-March 14,2021
-
+March 14,2021 
 IDE : Microsoft Visual Studio Professional 2019 Ver 16.8.1
 ILOG CPLEX Optimization Studio 12.6.1
 */
